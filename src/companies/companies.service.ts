@@ -21,11 +21,11 @@ export class CompaniesService {
     }
 
     getCompanies() {
-        return this.companyModel.find().populate('comments')
+        return this.companyModel.find().populate('comments').populate('salaries').populate('interviews')
     }
 
     getCompanyById(id: string) {
-        return this.companyModel.findById(id).populate('comments')
+        return this.companyModel.findById(id).populate('comments').populate('salaries').populate('interviews')
     }
 
     updateCompany(id: string, updateCompanyDto: UpdateCompanyDto) {

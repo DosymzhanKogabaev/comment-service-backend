@@ -62,7 +62,7 @@ export class CommentsService {
 
   private async updateRating(entity: any): Promise<void> {
     // Populate the comments to access their ratings
-    const populatedEntity = await entity.model(entity.constructor.modelName).findById(entity._id).populate('comments');
+    const populatedEntity = await entity.model(entity.constructor.modelName).findById(entity._id).populate('comments').populate('salaries').populate('interviews');
   
     // Extract ratings from the comments
     const comments = populatedEntity.comments;
@@ -71,7 +71,5 @@ export class CommentsService {
   
     // Update the entity's rating in the database
     await entity.updateOne({ rating: averageRating });
-  }
-  
-  
+  }  
 }

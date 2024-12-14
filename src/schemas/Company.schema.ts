@@ -1,6 +1,8 @@
 import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
 import { Comment } from "./Comment.schema";
 import mongoose from "mongoose";
+import { Salary } from "./Salary.schema";
+import { Interview } from "./Interview.schema";
 
 @Schema()
 export class Company {
@@ -12,6 +14,12 @@ export class Company {
 
     @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }] })
     comments: Comment[]
+    
+    @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Salary' }] })
+    salaries: Salary[]
+
+    @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Interview' }] })
+    interviews: Interview[]
 
     @Prop({ default: 0 })
     rating: number;
